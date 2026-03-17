@@ -1,67 +1,84 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
+
     <meta charset="UTF-8">
-    <title>Il mio Flask App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Aggiungi Obiettivo</title>
     <style>
-        body { background-color: #f8f7f8; border-color: blueviolet;}
-        .main-card { margin-top: 50px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        body { 
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            height: 100vh; 
+            margin: 0;
+        }
+        .card { 
+            border-radius: 20px; 
+            border: 1px solid rgba(255, 255, 255, 0.3); 
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px); /* Размытие заднего фона */
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+        }
+        .transition-icon:hover { 
+            transform: scale(1.25) rotate(5deg); /* Увеличение и легкий наклон */
+            filter: brightness(1.2); /* Станет чуть ярче */
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .container {
+            animation: fadeIn 0.8s ease-out;
+        }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm w-100 position-absolute top-0">
   <div class="container">
-    <a class="navbar-brand" href="/">My Flask App</a>
-    <div class="navbar-nav">
-      <a class="nav-link" href="/">Home</a>
-      <a class="nav-link" href="/second">Obiettivi</a>
+    <a class="navbar-brand fw-bold" href="/">🚀 My Flask App</a>
+    <div class="navbar-nav ms-auto">
+      <a class="nav-link active" href="/">Home</a>
+      <a class="nav-link" href="/second_page">Obiettivi</a>
     </div>
   </div>
 </nav>
-<div class="container py-5">
+
+<div class="container content-wrapper">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card border-0 shadow-lg overflow-hidden" style="border-radius: 20px;">
-                <div class="row g-0">
-                    <div class="col-md-4 bg-primary d-flex align-items-center justify-content-center text-white">
-                        <div class="text-center p-4">
-                            <i class="display-1">🚀</i>
-                            <h3 class="mt-2">Pronti?</h3>
-                        </div>
+        <div class="col-md-5">
+            <div class="card shadow-lg p-4">
+                <h3 class="text-center fw-bold mb-4">Nuovo Obiettivo 🚀</h3>
+                <form action="/second" method="POST">
+                    <div class="mb-3">
+                        <input type="text" name="goal" class="form-control form-control-lg" placeholder="Cosa vuoi fare oggi?" required>
                     </div>
-                    <div class="col-md-8 p-5">
-                        <h2 class="fw-bold mb-4">Nuova Sfida</h2>
-                        <form action="/second" method="POST">
-                            <div class="mb-4">
-                                <label class="form-label text-muted">Cosa vuoi raggiungere?</label>
-                                <input type="text" name="goal" class="form-control form-control-lg border-0 bg-light" placeholder="Scrivi il tuo obiettivo...">
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-lg w-100 shadow-sm">Invia al Server</button>
-                        </form>
+                    <button type="submit" class="btn btn-primary w-100 btn-lg shadow-sm">Salva Obiettivo</button>
+                </form>
+
+                <hr class="my-4 text-muted">
+                
+                <div class="text-center">
+                    <p class="small text-uppercase text-muted fw-bold mb-3">I miei link</p>
+                    <div class="d-flex justify-content-center gap-4">
+                        <a href="https://youtube.com" target="_blank" class="text-danger fs-3 transition-icon">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="https://github.com" target="_blank" class="text-dark fs-3 transition-icon">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://instagram.com" target="_blank" class="text-primary fs-3 transition-icon">
+                            <i class="fab fa-instagram"></i>
+                        </a>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="container text-center mt-5">
-    <h1>Questa è la Prima Pagina</h1>
-    <p>Benvenuti nel mio mondo Flask.</p>
-    <a href="/second" class="btn btn-primary btn-lg">Vai alla Seconda Pagina</a>
-</div>
 
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card main-card p-5 text-center">
-                <h1 class="display-4 text-primary">Ciao, Vladlen!</h1>
-                <p class="lead">Questo è il mio primo server Flask con uno stile professionale.</p>
-                <hr>
-                <p>Oggi ho scelto di investire il mio tempo nel <strong>codice</strong>.</p>
-                <div class="mt-4">
-                    <span class="badge bg-success p-2">Flask Online</span>
-                    <span class="badge bg-info p-2 text-dark">CSS via Bootstrap</span>
+                <div class="text-center mt-3">
+                    <a href="/second_page" class="text-muted text-decoration-none small">Guarda la lista →</a>
                 </div>
             </div>
         </div>
