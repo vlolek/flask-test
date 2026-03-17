@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>I Miei Obiettivi</title>
+    <style>
+        body { background-color: #f4f7f6; }
+        .goal-card { border-radius: 15px; border: none; transition: 0.3s; }
+        .goal-card:hover { transform: translateY(-5px); shadow: 0 10px 20px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow mb-5">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="/">🚀 My Flask App</a>
+    <div class="navbar-nav ms-auto">
+      <a class="nav-link" href="/">Home</a>
+      <a class="nav-link active" href="/second">Obiettivi</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="text-center mb-4">
+                <h2 class="fw-bold text-dark">Lista di Controllo</h2>
+                <p class="text-muted">Tutto ciò che hai scritto, è salvato qui.</p>
+            </div>
+
+            <div class="card shadow-lg goal-card overflow-hidden">
+                <div class="card-header bg-primary text-white py-3">
+                    <h5 class="mb-0">I miei obiettivi salvati</h5>
+                </div>
+                <div class="card-body p-0">
+                    <ul class="list-group list-group-flush">
+                        {% if goals %}
+                            {% for g in goals %}
+                            <li class="list-group-item d-flex justify-content-between align-items-center p-4">
+                                <div>
+                                    <span class="text-primary me-2">●</span>
+                                    <span class="fw-medium text-dark">{{ g }}</span>
+                                </div>
+                                <span class="badge bg-light text-primary border rounded-pill px-3">In Corso</span>
+                            </li>
+                            {% endfor %}
+                        {% else %}
+                            <li class="list-group-item p-5 text-center text-muted">
+                                Non hai ancora salvato nulla. Torna alla Home!
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+                <div class="card-footer bg-white text-center py-3">
+                    <a href="/" class="btn btn-primary px-4 shadow-sm">Aggiungi nuovo obiettivo</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="position-fixed bottom-0 end-0 p-4" style="z-index: 1050;">
+    <div class="badge bg-dark p-3 shadow-lg" style="border-radius: 10px; opacity: 0.9;">
+        <span class="text-uppercase small d-block mb-1 text-secondary">Ultimo Accesso</span>
+        <span class="fs-5 fw-bold text-white">{{ current_time }}</span>
+    </div>
+</div>
+
+</body>
+</html>
